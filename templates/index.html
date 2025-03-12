@@ -6,42 +6,226 @@
     <title>Photo to Text Converter App for the Visually Impaired</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-image: url('static/b.jpg');
-            background-size: cover;
-            padding: 20px;
-        }
-        .container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        .section {
-            margin-bottom: 30px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #000;
-        }
-        .divider {
-            height: 2px;
-            background-color: #ddd;
-            margin: 20px 0;
-        }
-        #loading {
-            display: none;
-            text-align: center;
-        }
-        #uploadedImage {
-            max-width: 100%;
-            max-height: 400px;
-            margin: 0 auto;
-            display: block;
-        }
+        /* General Styles */
+body {
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styling */
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Styling */
+.section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.divider {
+    height: 2px;
+    background-color: #ddd;
+    margin: 15px 0;
+}
+
+/* Header Styles */
+h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+input[type="file"], select, textarea, button {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Textarea and Button Customization */
+textarea {
+    resize: none;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Image Preview Styling */
+#imagePreview {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#uploadedImage {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    border-radius: 8px;
+}
+
+/* Loading Spinner */
+#loading {
+    display: none;
+    text-align: center;
+}
+
+.spinner-border {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+    color: #007bff;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+    .form-floating {
+        margin-bottom: 15px;
+    }
+
+    #uploadedImage {
+        max-height: 300px;
+    }
+
+    button {
+        font-size: 1.2rem;
+        padding: 12px;
+    }
+
+    #audioPlayer {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    #speechSection {
+        display: block;
+    }
+}
+
+/* Speech Section Styles */
+#speechSection {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: none;
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#speechSection select {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#speechSection button {
+    background-color: #28a745;
+}
+
+#speechSection button:hover {
+    background-color: #218838;
+}
+
+#downloadSpeechBtn {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#downloadSpeechBtn:hover {
+    background-color: #138496;
+}
+
+/* Text Extraction Section */
+#extractionSection {
+    display: block;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#extractedText {
+    resize: none;
+}
+
+/* Translation Section */
+#translationSection {
+    display: block;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#sourceText, #translatedText {
+    font-size: 1rem;
+}
+
+#translationSection button {
+    background-color: #ffc107;
+    color: white;
+}
+
+#translationSection button:hover {
+    background-color: #e0a800;
+}
+
+        
     </style>
 </head>
 <body>

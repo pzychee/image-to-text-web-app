@@ -6,7 +6,7 @@ import pytesseract
 import base64
 import os
 from gtts import gTTS
-from deep_translator import GoogleTranslator
+from translate import Translator
 from googletrans import LANGUAGES
 import io
 import warnings
@@ -28,8 +28,8 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 import platform
 if platform.system() == 'Windows':
     # For local Windows development only
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract.exe'
-    
+    pytesseract.pytesseract.tesseract_cmd = r'F:\project\CODE\Tesseract-OCR\tesseract.exe'
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -93,7 +93,8 @@ def translate_text():
         return jsonify({'success': False, 'error': 'Missing parameters'})
     
     try:
-        translated_text = GoogleTranslator(source=source_lang, target=target_lang).translate(text)
+        translator = Translator(from_lang=source_lang, to_lang=target_lang)
+        translated_text = translator.translate(text)
         return jsonify({
             'success': True,
             'translated_text': translated_text
@@ -127,6 +128,7 @@ def text_to_speech():
 def download_audio():
     audio_path = os.path.join(app.config['UPLOAD_FOLDER'], 'speech.mp3')
     return send_file(audio_path, as_attachment=True, download_name='translated_speech.mp3')
+
 @app.route('/debug-tesseract')
 def debug_tesseract():
     import shutil
