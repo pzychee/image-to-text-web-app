@@ -5,7 +5,7 @@ werkzeug==2.2.2
 opencv-python==4.6.0.66
 scipy==1.9.3
 Pillow==9.3.0
- 
+translate==3.6.1
 gtts==2.3.1
 pytesseract==0.3.10
 googletrans==4.0.1
