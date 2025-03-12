@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speech Translation</title>
+</head>
+<body>
+    <h1 style="color:#000000;text-align: center;font-size:28px;">Speech Translation</h1>
+    <form action="/speech_translation" method="post">
+        <label for="speech_lang_code">Speech Language:</label>
+        <select name="speech_lang_code" id="speech_lang_code">
+            {% for lang in LANGUAGES.values() %}
+                <option value="{{ lang }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <textarea name="translated_text" rows="10" cols="50">{{ translated_text }}</textarea>
+        <br>
+        <input type="submit" value="Convert to Speech">
+    </form>
+</body>
+</html>

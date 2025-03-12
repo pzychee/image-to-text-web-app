@@ -1,0 +1,5 @@
+Acommon application of OCR technology is the automated conversion
+of an image based PDF, TIFF or JPG into a text based machine-readable
+file. OCR-processed digital files, such as receipts, contracts, invoices,
+ancial statements and more
+

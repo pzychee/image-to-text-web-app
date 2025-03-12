@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Translation</title>
+</head>
+<body>
+    <h1 style="color:#000000;text-align: center;font-size:28px;">Text Translation</h1>
+    <form action="/translate_text" method="post">
+        <label for="src_language">Source Language:</label>
+        <select name="src_language" id="src_language">
+            {% for lang in LANGUAGES.values() %}
+                <option value="{{ lang }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="dest_language">Destination Language:</label>
+        <select name="dest_language" id="dest_language">
+            {% for lang in LANGUAGES.values() %}
+                <option value="{{ lang }}">{{ lang }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <textarea name="input_text" rows="10" cols="50">{{ trans_text }}</textarea>
+        <br>
+        <input type="submit" value="Translate">
+    </form>
+    {% if translated_text %}
+        <p>Translated Text:</p>
+        <textarea rows="10" cols="50" disabled>{{ translated_text }}</textarea>
+        <a href="/speech_translation">Convert to Speech</a>
+    {% endif %}
+</body>
+</html>

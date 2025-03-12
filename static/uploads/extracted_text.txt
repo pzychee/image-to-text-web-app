@@ -1,0 +1,10 @@
+Al Driven Insider Threat Detection
+
+e Developed an Insider threat detection model using Random Forest
+
+@ Achived a High acuraccy rate of 92%
+e@ Outlined user behaviour using UBA
+
+e Packets reaching the malicious potethreshold would be clasified for
+
+e If the threshold is matched the threat would be neutralized by

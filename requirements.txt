@@ -1,0 +1,12 @@
+Flask==2.2.2
+numpy==1.23.5
+matplotlib==3.6.2
+ 
+opencv-python==4.6.0.66
+scipy==1.9.3
+Pillow==9.3.0
+base64==1.1.0
+gtts==2.3.1
+pytesseract==0.3.10
+googletrans==5.0.0
+deep-translator==1.10.0
